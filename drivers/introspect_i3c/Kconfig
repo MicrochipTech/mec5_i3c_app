@@ -1,0 +1,27 @@
+# Introspect configuration options
+
+# Copyright (c) 2024 Microchip Technologies Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+menuconfig INTROSPECT_I3C
+	bool "I3C Introspect driver"
+	help
+	  Include Introspect drivers in system config.
+
+if INTROSPECT_I3C
+
+config INTROSPECT_I3C_INIT_PRIORITY
+	int "Introspect I3C driver init priority"
+	default 90
+	help
+	  Introspect I3C device driver initialization priority.
+	  There isn't any critical component relying on this priority at
+	  the moment.
+
+module = INTROSPECT_I3C
+module-str = introspect_i3c
+#source "subsys/logging/Kconfig.template.log_config"
+
+rsource "Kconfig.mec5"
+
+endif # INTROSPECT_I3C

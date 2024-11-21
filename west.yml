@@ -1,0 +1,26 @@
+# Copyright (c) 2024 Microchip Technology Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+manifest:
+  self:
+    west-commands: scripts/west-commands.yml
+
+  remotes:
+    - name: origin
+      url-base: https://github.com/MicrochipTech
+
+  projects:
+    - name: zephyr
+      remote: origin
+      # devel_mec5_all_updates commit on Nov 20 16:01:41
+      revision: b500f961f5656dfd1373d55bc773306dcc6eeaaa
+      import:
+        # By using name-allowlist we can clone only the modules that are
+        # strictly needed by the application.
+        name-allowlist:
+          - cmsis      # required by the ARM port
+    - name: hal_microchip
+      path: modules/hal/microchip
+      remote: origin
+      # tag: v0.3.2-pre1
+      revision: aaa7811cb077c34f8a38a4d4103d6db7afd5e9f1
